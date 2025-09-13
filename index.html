@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Water Intake Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #74ABE2, #5563DE);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff7b54;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #ff5722;
+        }
+
+        .total {
+            font-size: 32px;
+            margin-top: 20px;
+        }
+
+        footer {
+            margin-top: 30px;
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        footer strong {
+            color: #ffdd57;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Water Intake Tracker</h1>
+
+        <input type="number" id="waterInput" placeholder="Amount in ml" />
+        <br/>
+        <button id="addWaterBtn">Add Intake</button>
+        <button id="resetBtn">Reset</button>
+
+        <div class="total" id="totalIntake">0 ml</div>
+    </div>
+
+    <footer>
+        Developed by <strong>Karthik Shet</strong>
+    </footer>
+
+    <script>
+        const waterInput = document.getElementById('waterInput');
+        const addWaterBtn = document.getElementById('addWaterBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const totalIntakeEl = document.getElementById('totalIntake');
+
+        let totalIntake = 0;
+
+        addWaterBtn.addEventListener('click', () => {
+            const intake = parseInt(waterInput.value);
+            if (isNaN(intake) || intake <= 0) {
+                return alert('Please enter a valid amount.');
+            }
+
+            totalIntake += intake;
+            totalIntakeEl.textContent = `${totalIntake} ml`;
+            waterInput.value = '';
+        });
+
+        resetBtn.addEventListener('click', () => {
+            totalIntake = 0;
+            totalIntakeEl.textContent = '0 ml';
+        });
+    </script>
+
+</body>
+
+</html>
